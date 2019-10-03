@@ -1,0 +1,37 @@
+version: '3'
+services:
+
+  php:
+    build:
+      context: .
+      dockerfile: php-dockerfile
+    container_name: php
+    depends_on:
+      - mysql
+    restart: always
+    volumes:
+      - '../src:/code'
+      - './config/php/php.ini:/usr/local/etc/php/conf.d/php_extra.ini'
+    environment:
+      PHP_INI_DIR: /usr/local/etc/php/conf.d
+      DB_HOST: "mysql"
+      DB_DATABASE: "${MYSQL_DATABASE}"
+      DB_USERNAME: "${MYSQL_USER}"
+      DB_PASSWORD: "${MYSQL_PASSWORD}"
+      DB_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      DB_PORT: 3306
+
+  mysql:
+    image: mysql:5
+    container_name: mysql
+    restart: always
+    expose:
+    - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    volumes:
+      - "./data/db:/var/lib/mysql"
+

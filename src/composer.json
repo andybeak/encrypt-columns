@@ -1,0 +1,25 @@
+{
+    "name": "andybeak/encrypt-columns",
+    "description": "An example of using an ORM to encrypt fields in a database.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Beak",
+            "email": "andy.beak@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "ext-sodium" : "*",
+        "illuminate/database": "^6.1",
+        "paragonie/halite": "^4",
+        "phpoption/phpoption": "^1.5",
+        "vlucas/phpdotenv": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "./App/"
+        }
+    }
+}
